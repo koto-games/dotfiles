@@ -1,0 +1,44 @@
+doas := ""
+os   := "arch"
+cd   := "/usr/local/bin/"
+default: all
+
+eza: Rust
+    cd eza && cargo build --release
+    {{doas}} cp -r ./eza/target/release/eza {{cd}}
+    eza -l
+
+kew: C Make
+    if echo {os} == "arch"; then \
+        {{doas}} yes | pacman -S ffmpeg fftw chafa \
+            freeimage glib2 opus opusfile libvorbis libnotify; \
+    fi
+
+    cd kew && make kew
+    {{doas}} cp -r ./kew/kew {{cd}}
+
+pipes-rs: Rust
+    cd pipes-rs && cargo build --release
+    {{doas}} cp -r ./pipes-rs/target/release/pipes-rs {{cd}}
+
+
+@all: kew eza pipes-rs
+    eza -l {{cd}}
+    echo 'OK!'
+
+
+@Rust:
+    if echo {os} == "arch"; then \
+        {{doas}} yes | pacman -S cargo; \
+    fi
+@C:
+    if echo {os} == "arch"; then \
+        {{doas}} yes | pacman -S gcc; \
+    fi
+@Make:
+    if echo {os} == "arch"; then \
+        {{doas}} yes | pacman -S make; \
+    fi
+    if echo {os} == "artix"; then \
+        {{doas}} yes | pacman -S make; \
+    fi

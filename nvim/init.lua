@@ -8,12 +8,12 @@ set.smartcase = true
 set.hlsearch = true
 set.incsearch = true
 set.swapfile = false
--- set.clipboard = unnamedplus
+
 set.tabstop = 4
 set.softtabstop = 4
 set.shiftwidth = 4
 set.colorcolumn = "88" --8
--- set.mouse = nvi
+
 set.expandtab = true
 
 set.smarttab = true
@@ -44,11 +44,11 @@ Plug('neovim/nvim-lspconfig')
 Plug('hrsh7th/nvim-cmp')
 Plug('hrsh7th/cmp-nvim-lsp')
 Plug('VonHeikemen/lsp-zero.nvim')
+Plug('NoahTheDuke/vim-just')
 
 Plug('projekt0n/caret.nvim')
 Plug('olivercederborg/poimandres.nvim')
 Plug('cocopon/iceberg.vim')
-Plug('NoahTheDuke/vim-just')
 
 vim.call('plug#end')
 
@@ -57,6 +57,9 @@ vim.cmd('colorscheme caret')
 vim.g.airline_theme = 'base16_shell'
 
 map('', '<C-n>', ':NERDTreeToggle<CR>', { noremap = true, silent = true })
+map('n', 'zs', ':q!<CR>')
+map('n', 'zo', ':wq!<CR>')
+
 map('i', '<C-B>', 'BUG: ')
 map('i', '<C-T>', 'TODO: ')
 map('i', '<C-W>', 'WARN: ')
@@ -173,6 +176,4 @@ require('gitsigns').setup {
     },
 }
 
--- BUG: require("wlsp")
-
--- TODO: require("which-key").show({ global = false })
+require("lsp")
