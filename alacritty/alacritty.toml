@@ -1,14 +1,11 @@
 # https://github.com/alacritty/alacritty-theme
-import = ["~/.config/alacritty/themes/themes/horizon-dark.toml"]
+general.import = ["~/.config/alacritty/themes/themes/catppuccin_mocha.toml"] #horizon-dark.toml"]
 
 [font]
-size = 14
-normal = { family = "MonaspiceNe Nerd Font", style = "Regular"}
-
-[shell]
-program = "/bin/fish"
+size = 15.7
+normal = { family = "MonaspiceNe Nerd Font"}
 
 [window]
-padding = { x = 3, y = 2 }
+padding = { x = 2, y = 2 }
 dynamic_padding = true
 opacity = 0.78

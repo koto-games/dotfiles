@@ -32,7 +32,7 @@ vim.call('plug#begin')
 
 Plug('ryanoasis/vim-devicons')
 Plug('vim-airline/vim-airline')
-Plug('vim-airline/vim-airline-themes')
+-- Plug('vim-airline/vim-airline-themes')
 Plug('nvim-treesitter/nvim-treesitter') --'luukvbaal/nnn.nvim')
 Plug('powerline/powerline')
 Plug('preservim/nerdcommenter')
@@ -53,18 +53,21 @@ Plug('hrsh7th/nvim-cmp')
 Plug('hrsh7th/cmp-nvim-lsp')
 Plug('VonHeikemen/lsp-zero.nvim')
 Plug('NoahTheDuke/vim-just')
+Plug('elkowar/yuck.vim')
+Plug('wakatime/vim-wakatime')
 
 Plug('projekt0n/caret.nvim')
 Plug('olivercederborg/poimandres.nvim')
 Plug('cocopon/iceberg.vim')
+Plug('catppuccin/nvim')
 
 vim.call('plug#end')
 
-vim.o.background = 'dark'
-vim.cmd('colorscheme caret')
-vim.g.airline_theme = 'base16_shell'
+-- vim.o.background = 'dark'
+vim.cmd('colorscheme catppuccin-mocha')
+vim.g.airline_theme = 'catppuccin'
 
-map('', '<C-n>', ':NERDTreeToggle<CR>', { noremap = true, silent = true })
+map('', '<C-b>', ':NERDTreeToggle<CR>', { noremap = true, silent = true })
 map('n', 'zs', ':q!<CR>')
 map('n', 'zo', ':wq!<CR>')
 
@@ -205,4 +208,4 @@ map('n', '[b', '<CMD>BufferLineMovePrev<CR>')
 map('n', 'gs', '<CMD>BufferLineSortByDirectory<CR>')
 
 require("lsp")
-require("nnn").setup()
+-- require("nnn").setup()

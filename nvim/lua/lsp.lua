@@ -23,15 +23,22 @@ lsp_zero.extend_lspconfig({
     lsp_attach = lsp_attach,
     capabilities = require('cmp_nvim_lsp').default_capabilities(),
 })
-
 -- These are just examples. Replace them with the language
 -- servers you have installed in your system
 require('lspconfig').vuels.setup({})
 require('lspconfig').bashls.setup({})
+-- require('lspconfig').htmx.setup({})
+require('lspconfig').superhtml.setup({
+    name = 'superhtml',
+    cmd = {'superhtml', 'lsp'},
+    filetypes = {'html', 'shtml', 'htm'},
+    root_dir = require('lspconfig.util').root_pattern('.git')})
+require('lspconfig').typst_lsp.setup({})
 require('lspconfig').clangd.setup({})
 require('lspconfig').lua_ls.setup({})
 require('lspconfig').rust_analyzer.setup({})
 
+lsp_zero.configure('superhtml', {force_setup = true})
 ---
 -- Autocompletion setup
 ---

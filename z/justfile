@@ -3,42 +3,40 @@ os   := "arch"
 cd   := "/usr/local/bin/"
 default: all
 
-eza: Rust
+eza: #Rust
     cd eza && cargo build --release
     {{doas}} cp -r ./eza/target/release/eza {{cd}}
-    eza -l
 
-kew: C Make
-    if echo {os} == "arch"; then \
-        {{doas}} yes | pacman -S ffmpeg fftw chafa \
-            freeimage glib2 opus opusfile libvorbis libnotify; \
-    fi
-
+kew: #C Make
     cd kew && make kew
     {{doas}} cp -r ./kew/kew {{cd}}
 
-pipes-rs: Rust
+pipes-rs: #Rust
     cd pipes-rs && cargo build --release
     {{doas}} cp -r ./pipes-rs/target/release/pipes-rs {{cd}}
 
+ripgrep: #Rust
+    cd ripgrep && cargo build --release
+    {{doas}} cp -r ./ripgrep/target/release/rg {{cd}}
 
-@all: kew eza pipes-rs
+
+@all: kew eza pipes-rs ripgrep
     eza -l {{cd}}
     echo 'OK!'
 
 
-@Rust:
-    if echo {os} == "arch"; then \
-        {{doas}} yes | pacman -S cargo; \
-    fi
-@C:
-    if echo {os} == "arch"; then \
-        {{doas}} yes | pacman -S gcc; \
-    fi
-@Make:
-    if echo {os} == "arch"; then \
-        {{doas}} yes | pacman -S make; \
-    fi
-    if echo {os} == "artix"; then \
-        {{doas}} yes | pacman -S make; \
-    fi
+# @Rust:
+#     if echo {os} == "arch"; then \
+#         {{doas}} yes | pacman -S cargo; \
+#     fi
+# @C:
+#     if echo {os} == "arch"; then \
+#         {{doas}} yes | pacman -S gcc; \
+#     fi
+# @Make:
+#     if echo {os} == "arch"; then \
+#         {{doas}} yes | pacman -S make; \
+#     fi
+#     if echo {os} == "artix"; then \
+#         {{doas}} yes | pacman -S make; \
+#     fi
